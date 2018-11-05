@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2050
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Slack13Net.Web", "Slack13Net\Slack13Net.Web.csproj", "{D5565F7D-073F-4886-9351-9B7A400BC73D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Slack13Net.Web", "Slack13Net.Web\Slack13Net.Web.csproj", "{D5565F7D-073F-4886-9351-9B7A400BC73D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Slack13Net.Api", "Slack13Net.Api\Slack13Net.Api.csproj", "{94E8FB4A-7B4E-41B3-9573-0ADFE22B9B6C}"
 EndProject
