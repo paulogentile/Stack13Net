@@ -6,10 +6,13 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.ResponseCompression;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Slack13Net.Core.Contexts;
 
 namespace Slack13Net.Api
 {
@@ -25,6 +28,27 @@ namespace Slack13Net.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<Context>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddCors(x =>
+            {
+                x.AddPolicy("Default",
+                    builder =>
+                    {
+                        builder.AllowAnyOrigin()
+                            .AllowAnyHeader()
+                            .AllowAnyMethod();
+                    });
+            });
+
+            services.Configure<GzipCompressionProviderOptions>(
+                o => o.Level = System.IO.Compression.CompressionLevel.Fastest);
+            services.AddResponseCompression(o =>
+            {
+                o.Providers.Add<GzipCompressionProvider>();
+            });
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
@@ -40,8 +64,11 @@ namespace Slack13Net.Api
                 app.UseHsts();
             }
 
+            app.UseResponseCompression();
+            app.UseCors("Default");
+
             app.UseHttpsRedirection();
-            app.UseMvc();
+            app.UseMvcWithDefaultRoute();
         }
     }
 }
