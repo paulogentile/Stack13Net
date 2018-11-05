@@ -28,6 +28,20 @@ namespace Slack13Net.Core.Contexts
                 pb.IsUnicode(false);
             }
 
+            
+            // Relacionamentos
+            modelBuilder.Entity<Categoria>()
+                .HasMany(p => p.Perguntas)
+                .WithOne(p => p.Categoria)
+                .HasForeignKey(p => p.CategoriaId)
+                .IsRequired();
+
+            modelBuilder.Entity<Pergunta>()
+                .HasMany(p => p.Respostas)
+                .WithOne(p => p.Pergunta)
+                .HasForeignKey(p => p.PerguntaId)
+                .IsRequired();
+
             modelBuilder.Entity<Categoria>().HasData(new Categoria {CategoriaId = 1, Descricao = "javascript"});
             modelBuilder.Entity<Categoria>().HasData(new Categoria {CategoriaId = 2, Descricao = "c#"});
             modelBuilder.Entity<Categoria>().HasData(new Categoria {CategoriaId = 3, Descricao = "jquery"});

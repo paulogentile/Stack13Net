@@ -10,8 +10,8 @@ using Slack13Net.Core.Contexts;
 namespace Slack13Net.Core.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20181105190408_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20181105193805_inicial")]
+    partial class inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -81,8 +81,8 @@ namespace Slack13Net.Core.Migrations
                     b.ToTable("Perguntas");
 
                     b.HasData(
-                        new { PerguntaId = 1, Autor = "Wallace Maxters", CategoriaId = 1, DataCadastro = new DateTime(2018, 11, 5, 17, 4, 8, 565, DateTimeKind.Local), Descricao = "Quanto tento retornar um objeto literal com Arrow Function, dá um erro: <br>var items = [1, 2, 3].map( i => {valor: i, data: new Date() })<br>Como contornar isso no Javascript?", Tags = "javascript,característica-linguagem", Titulo = "Como retornar um objeto literal num arrow function?" },
-                        new { PerguntaId = 2, Autor = "Adrian Matheus Fernandez", CategoriaId = 2, DataCadastro = new DateTime(2018, 11, 5, 17, 4, 8, 573, DateTimeKind.Local), Descricao = "É possível reescrever qualquer código em C/C# que use ponteiros de um modo que faça a mesma coisa sem utilizá-los?<br>Meu medo são códigos mais complexos. Os simples eu acredito que não haja dificuldades de se reescrever.<br>Como poderia substituir os ponteiros usando o mesmo conceito em JavaScript?", Tags = "javascript,c#,c++,node.js,ponteiro", Titulo = "É possível reescrever qualquer código que use ponteiros (C#) sem usar ponteiros em Node.js?" }
+                        new { PerguntaId = 1, Autor = "Wallace Maxters", CategoriaId = 1, DataCadastro = new DateTime(2018, 11, 5, 17, 38, 5, 221, DateTimeKind.Local), Descricao = "Quanto tento retornar um objeto literal com Arrow Function, dá um erro: <br>var items = [1, 2, 3].map( i => {valor: i, data: new Date() })<br>Como contornar isso no Javascript?", Tags = "javascript,característica-linguagem", Titulo = "Como retornar um objeto literal num arrow function?" },
+                        new { PerguntaId = 2, Autor = "Adrian Matheus Fernandez", CategoriaId = 2, DataCadastro = new DateTime(2018, 11, 5, 17, 38, 5, 226, DateTimeKind.Local), Descricao = "É possível reescrever qualquer código em C/C# que use ponteiros de um modo que faça a mesma coisa sem utilizá-los?<br>Meu medo são códigos mais complexos. Os simples eu acredito que não haja dificuldades de se reescrever.<br>Como poderia substituir os ponteiros usando o mesmo conceito em JavaScript?", Tags = "javascript,c#,c++,node.js,ponteiro", Titulo = "É possível reescrever qualquer código que use ponteiros (C#) sem usar ponteiros em Node.js?" }
                     );
                 });
 
@@ -112,7 +112,7 @@ namespace Slack13Net.Core.Migrations
                     b.ToTable("Respostas");
 
                     b.HasData(
-                        new { RespostaId = 1, Autor = "Jones Araujo", DataCadastro = new DateTime(2018, 11, 5, 17, 4, 8, 573, DateTimeKind.Local), Descricao = "Vixi cara boa pergunta!", PerguntaId = 1 }
+                        new { RespostaId = 1, Autor = "Jones Araujo", DataCadastro = new DateTime(2018, 11, 5, 17, 38, 5, 226, DateTimeKind.Local), Descricao = "Vixi cara boa pergunta!", PerguntaId = 1 }
                     );
                 });
 

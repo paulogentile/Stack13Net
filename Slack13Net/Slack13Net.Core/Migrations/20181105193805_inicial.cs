@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Slack13Net.Core.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class inicial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -85,17 +85,17 @@ namespace Slack13Net.Core.Migrations
             migrationBuilder.InsertData(
                 table: "Perguntas",
                 columns: new[] { "PerguntaId", "Autor", "CategoriaId", "DataCadastro", "Descricao", "Tags", "Titulo" },
-                values: new object[] { 1, "Wallace Maxters", 1, new DateTime(2018, 11, 5, 17, 4, 8, 565, DateTimeKind.Local), "Quanto tento retornar um objeto literal com Arrow Function, dá um erro: <br>var items = [1, 2, 3].map( i => {valor: i, data: new Date() })<br>Como contornar isso no Javascript?", "javascript,característica-linguagem", "Como retornar um objeto literal num arrow function?" });
+                values: new object[] { 1, "Wallace Maxters", 1, new DateTime(2018, 11, 5, 17, 38, 5, 221, DateTimeKind.Local), "Quanto tento retornar um objeto literal com Arrow Function, dá um erro: <br>var items = [1, 2, 3].map( i => {valor: i, data: new Date() })<br>Como contornar isso no Javascript?", "javascript,característica-linguagem", "Como retornar um objeto literal num arrow function?" });
 
             migrationBuilder.InsertData(
                 table: "Perguntas",
                 columns: new[] { "PerguntaId", "Autor", "CategoriaId", "DataCadastro", "Descricao", "Tags", "Titulo" },
-                values: new object[] { 2, "Adrian Matheus Fernandez", 2, new DateTime(2018, 11, 5, 17, 4, 8, 573, DateTimeKind.Local), "É possível reescrever qualquer código em C/C# que use ponteiros de um modo que faça a mesma coisa sem utilizá-los?<br>Meu medo são códigos mais complexos. Os simples eu acredito que não haja dificuldades de se reescrever.<br>Como poderia substituir os ponteiros usando o mesmo conceito em JavaScript?", "javascript,c#,c++,node.js,ponteiro", "É possível reescrever qualquer código que use ponteiros (C#) sem usar ponteiros em Node.js?" });
+                values: new object[] { 2, "Adrian Matheus Fernandez", 2, new DateTime(2018, 11, 5, 17, 38, 5, 226, DateTimeKind.Local), "É possível reescrever qualquer código em C/C# que use ponteiros de um modo que faça a mesma coisa sem utilizá-los?<br>Meu medo são códigos mais complexos. Os simples eu acredito que não haja dificuldades de se reescrever.<br>Como poderia substituir os ponteiros usando o mesmo conceito em JavaScript?", "javascript,c#,c++,node.js,ponteiro", "É possível reescrever qualquer código que use ponteiros (C#) sem usar ponteiros em Node.js?" });
 
             migrationBuilder.InsertData(
                 table: "Respostas",
                 columns: new[] { "RespostaId", "Autor", "DataCadastro", "Descricao", "PerguntaId" },
-                values: new object[] { 1, "Jones Araujo", new DateTime(2018, 11, 5, 17, 4, 8, 573, DateTimeKind.Local), "Vixi cara boa pergunta!", 1 });
+                values: new object[] { 1, "Jones Araujo", new DateTime(2018, 11, 5, 17, 38, 5, 226, DateTimeKind.Local), "Vixi cara boa pergunta!", 1 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Perguntas_CategoriaId",
