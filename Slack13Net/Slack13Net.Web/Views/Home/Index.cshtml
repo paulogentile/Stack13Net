@@ -1,13 +1,38 @@
-﻿@model IEnumerable<Pergunta>
+﻿@model IEnumerable<Categoria>
 @{
-    ViewData["Title"] = "Home Page";
+  ViewData["Title"] = "Home Page";
 }
 
-<main role="main">
-  <ul>
-    @foreach (var item in Model)
-    {
-      <li>@item.Titulo</li>
-    }
-  </ul>
-</main>
+<div class="content-heading">Fórum Stack13Net</div>
+<div class="card card-default">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th class="h4" style="width: 50%">Categorias</th>
+        <th class="h4 text-center d-none d-lg-table-cell">Tópicos</th>
+        <th class="h4 d-none d-lg-table-cell">Última Atualização</th>
+      </tr>
+    </thead>
+    <tbody>
+      @foreach (var item in Model)
+      {
+        <tr>
+          <td>
+            <h4>
+              <a asp-controller="Perguntas" asp-action="Index" asp-route-id="@item.CategoriaId">
+                <strong>@item.Titulo</strong>
+              </a>
+            </h4>
+            <div class="text-muted">@item.Descricao</div>
+          </td>
+          <td class="text-muted text-center d-none d-lg-table-cell">
+            <strong>@item.Perguntas.Count</strong>
+          </td>
+          <td class="d-none d-lg-table-cell">
+            <small>@(item.Perguntas.LastOrDefault()?.DataCadastro.ToString("dd \\de MMMM \\de yyyy") ?? "-")</small>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

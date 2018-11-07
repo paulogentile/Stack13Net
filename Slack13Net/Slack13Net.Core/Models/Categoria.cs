@@ -9,6 +9,9 @@ namespace Slack13Net.Core.Models
         public int CategoriaId { get; set; }
         
         [Required]
+        public string Titulo { get; set; }
+        
+        [Required]
         public string Descricao { get; set; }
 
         public virtual ICollection<Pergunta> Perguntas { get; set; }

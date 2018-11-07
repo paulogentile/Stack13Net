@@ -14,6 +14,7 @@ namespace Slack13Net.Core.Migrations
                 {
                     CategoriaId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Titulo = table.Column<string>(unicode: false, nullable: false),
                     Descricao = table.Column<string>(unicode: false, nullable: false)
                 },
                 constraints: table =>
@@ -69,33 +70,33 @@ namespace Slack13Net.Core.Migrations
 
             migrationBuilder.InsertData(
                 table: "Categorias",
-                columns: new[] { "CategoriaId", "Descricao" },
+                columns: new[] { "CategoriaId", "Descricao", "Titulo" },
                 values: new object[,]
                 {
-                    { 1, "javascript" },
-                    { 2, "c#" },
-                    { 3, "jquery" },
-                    { 4, "html" },
-                    { 5, "sql" },
-                    { 6, "asp.net" },
-                    { 7, "asp.net core" },
-                    { 8, "json" }
+                    { 1, "Encontre aqui tudo que precisa saber sobre javascript", "JavaScript" },
+                    { 2, "Encontre aqui tudo que precisa saber sobre C#", "C#" },
+                    { 3, "Encontre aqui tudo que precisa saber sobre jQuery", "jQuery" },
+                    { 4, "Encontre aqui tudo que precisa saber sobre HTML", "HTML" },
+                    { 5, "Encontre aqui tudo que precisa saber sobre SQL Server", "SQL Server" },
+                    { 6, "Encontre aqui tudo que precisa saber sobre Asp.Net", "Asp.Net" },
+                    { 7, "Encontre aqui tudo que precisa saber sobre Asp.Net Core", "Asp.Net Core" },
+                    { 8, "Encontre aqui tudo que precisa saber sobre Json", "Json" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Perguntas",
                 columns: new[] { "PerguntaId", "Autor", "CategoriaId", "DataCadastro", "Descricao", "Tags", "Titulo" },
-                values: new object[] { 1, "Wallace Maxters", 1, new DateTime(2018, 11, 5, 17, 38, 5, 221, DateTimeKind.Local), "Quanto tento retornar um objeto literal com Arrow Function, dá um erro: <br>var items = [1, 2, 3].map( i => {valor: i, data: new Date() })<br>Como contornar isso no Javascript?", "javascript,característica-linguagem", "Como retornar um objeto literal num arrow function?" });
+                values: new object[] { 1, "Wallace Maxters", 1, new DateTime(2018, 11, 7, 17, 32, 23, 40, DateTimeKind.Local), "Quanto tento retornar um objeto literal com Arrow Function, dá um erro: <br>var items = [1, 2, 3].map( i => {valor: i, data: new Date() })<br>Como contornar isso no Javascript?", "javascript,característica-linguagem", "Como retornar um objeto literal num arrow function?" });
 
             migrationBuilder.InsertData(
                 table: "Perguntas",
                 columns: new[] { "PerguntaId", "Autor", "CategoriaId", "DataCadastro", "Descricao", "Tags", "Titulo" },
-                values: new object[] { 2, "Adrian Matheus Fernandez", 2, new DateTime(2018, 11, 5, 17, 38, 5, 226, DateTimeKind.Local), "É possível reescrever qualquer código em C/C# que use ponteiros de um modo que faça a mesma coisa sem utilizá-los?<br>Meu medo são códigos mais complexos. Os simples eu acredito que não haja dificuldades de se reescrever.<br>Como poderia substituir os ponteiros usando o mesmo conceito em JavaScript?", "javascript,c#,c++,node.js,ponteiro", "É possível reescrever qualquer código que use ponteiros (C#) sem usar ponteiros em Node.js?" });
+                values: new object[] { 2, "Adrian Matheus Fernandez", 2, new DateTime(2018, 11, 7, 17, 32, 23, 46, DateTimeKind.Local), "É possível reescrever qualquer código em C/C# que use ponteiros de um modo que faça a mesma coisa sem utilizá-los?<br>Meu medo são códigos mais complexos. Os simples eu acredito que não haja dificuldades de se reescrever.<br>Como poderia substituir os ponteiros usando o mesmo conceito em JavaScript?", "javascript,c#,c++,node.js,ponteiro", "É possível reescrever qualquer código que use ponteiros (C#) sem usar ponteiros em Node.js?" });
 
             migrationBuilder.InsertData(
                 table: "Respostas",
                 columns: new[] { "RespostaId", "Autor", "DataCadastro", "Descricao", "PerguntaId" },
-                values: new object[] { 1, "Jones Araujo", new DateTime(2018, 11, 5, 17, 38, 5, 226, DateTimeKind.Local), "Vixi cara boa pergunta!", 1 });
+                values: new object[] { 1, "Jones Araujo", new DateTime(2018, 11, 7, 17, 32, 23, 46, DateTimeKind.Local), "Vixi cara boa pergunta!", 1 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Perguntas_CategoriaId",

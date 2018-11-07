@@ -42,14 +42,14 @@ namespace Slack13Net.Core.Contexts
                 .HasForeignKey(p => p.PerguntaId)
                 .IsRequired();
 
-            modelBuilder.Entity<Categoria>().HasData(new Categoria {CategoriaId = 1, Descricao = "javascript"});
-            modelBuilder.Entity<Categoria>().HasData(new Categoria {CategoriaId = 2, Descricao = "c#"});
-            modelBuilder.Entity<Categoria>().HasData(new Categoria {CategoriaId = 3, Descricao = "jquery"});
-            modelBuilder.Entity<Categoria>().HasData(new Categoria {CategoriaId = 4, Descricao = "html"});
-            modelBuilder.Entity<Categoria>().HasData(new Categoria {CategoriaId = 5, Descricao = "sql"});
-            modelBuilder.Entity<Categoria>().HasData(new Categoria {CategoriaId = 6, Descricao = "asp.net"});
-            modelBuilder.Entity<Categoria>().HasData(new Categoria {CategoriaId = 7, Descricao = "asp.net core"});
-            modelBuilder.Entity<Categoria>().HasData(new Categoria {CategoriaId = 8, Descricao = "json"});
+            modelBuilder.Entity<Categoria>().HasData(new Categoria {CategoriaId = 1, Titulo = "JavaScript", Descricao = "Encontre aqui tudo que precisa saber sobre javascript"});
+            modelBuilder.Entity<Categoria>().HasData(new Categoria {CategoriaId = 2, Titulo = "C#", Descricao = "Encontre aqui tudo que precisa saber sobre C#"});
+            modelBuilder.Entity<Categoria>().HasData(new Categoria {CategoriaId = 3, Titulo = "jQuery", Descricao = "Encontre aqui tudo que precisa saber sobre jQuery"});
+            modelBuilder.Entity<Categoria>().HasData(new Categoria {CategoriaId = 4, Titulo = "HTML", Descricao = "Encontre aqui tudo que precisa saber sobre HTML"});
+            modelBuilder.Entity<Categoria>().HasData(new Categoria {CategoriaId = 5, Titulo = "SQL Server", Descricao = "Encontre aqui tudo que precisa saber sobre SQL Server"});
+            modelBuilder.Entity<Categoria>().HasData(new Categoria {CategoriaId = 6, Titulo = "Asp.Net", Descricao = "Encontre aqui tudo que precisa saber sobre Asp.Net"});
+            modelBuilder.Entity<Categoria>().HasData(new Categoria {CategoriaId = 7, Titulo = "Asp.Net Core", Descricao = "Encontre aqui tudo que precisa saber sobre Asp.Net Core"});
+            modelBuilder.Entity<Categoria>().HasData(new Categoria {CategoriaId = 8, Titulo = "Json", Descricao = "Encontre aqui tudo que precisa saber sobre Json"});
 
             modelBuilder.Entity<Pergunta>().HasData(new Pergunta
                 {

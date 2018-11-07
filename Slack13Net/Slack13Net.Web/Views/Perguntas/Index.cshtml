@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Pergunta>
+@{
+  ViewData["Title"] = "Index";
+}
+
+<div class="content-heading">
+  <div>
+    Tópicos
+  </div>
+  <div class="ml-auto">
+    <a class="btn btn-sm btn-secondary text-sm" href="">&lt; back</a>
+  </div>
+</div>
+<div class="card card-default">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th class="h4" style="width: 50%">Welcome</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      @foreach (var item in Model)
+      {
+        <tr>
+          <td>
+            <h4>
+              <a asp-controller="Respostas" asp-action="Index" asp-route-id="@item.PerguntaId">
+                <strong>@item.Titulo</strong>
+              </a>
+            </h4>
+            <div class="text-muted text-sm">
+              <span class="mx-1"></span>
+              <span>
+                <strong class="mr-1">@item.Respostas.Count</strong>respostas
+              </span>
+            </div>
+          </td>
+          <td class="text-right d-none d-lg-table-cell">
+            <div class="text-muted">
+              <small>@item.DataCadastro.ToString("dd \\de MMMM \\de yyyy")</small>
+            </div>
+          </td>
+        </tr>
+      }
+    
+    @if (Model.Count() == 0)
+    {
+      <tr>
+        <td>Nenhum tópico encontrado.</td>
+      </tr>
+    }
+    </tbody>
+  </table>
+</div>
