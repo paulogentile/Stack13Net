@@ -1,36 +1,46 @@
-﻿@model IEnumerable<Resposta>
+﻿@model Slack13Net.Web.ViewModels.RespostasViewModel
 @{
   ViewData["Title"] = "Index";
 }
 
 <div class="content-heading">
   <div>
-    Forum - Discussion
-    <small>Topic ID: 999</small>
+    Fórum Stack13Net - Respostas
   </div>
   <div class="ml-auto">
-    <a class="btn btn-sm btn-secondary text-sm">&lt; voltar</a>
+    <a class="btn btn-sm btn-secondary text-sm" asp-controller="Perguntas" asp-action="Index" asp-route-id="@Model.Pergunta.PerguntaId">&lt; voltar</a>
   </div>
 </div>
 <div class="card card-default">
   <table class="table table-striped">
-    <thead>
-      <tr>
-        <th class="h4" colspan="2">
-          Powered by AngularJS
-          <span class="mx-1">-</span>
-          <small>
-            by
-            <a href="">
-              <strong>Glen Dunn</strong>
-            </a> on
-            <em>March 10, 2015</em>
-          </small>
-        </th>
-      </tr>
-    </thead>
     <tbody>
-      @foreach (var item in Model)
+      <tr>
+        <td class="text-center">
+          <strong>@Model.Pergunta.Autor</strong>
+        </td>
+        <td class="text-right">
+          em
+          <em>@Model.Pergunta.DataCadastro.ToString("dd \\de MMMM \\de yyyy")</em>
+        </td>
+      </tr>
+      <tr>
+        <td class="text-center" style="width: 15%;">
+          <div class="mt-2">
+            <a href="">
+              <img class="rounded-circle thumb64" src="https://api.adorable.io/avatars/64/@(Model.Pergunta.Autor).png" alt="avatar">
+            </a>
+          </div>
+        </td>
+        <td>
+          <p>
+            @Html.Raw(Model.Pergunta.Descricao)
+          </p>
+          <div class="text-right">
+            <em>@Model.Pergunta.Tags</em>
+          </div>
+        </td>
+      </tr>
+      @foreach (var item in Model.Respostas)
       {
         <tr>
           <td class="text-center">
@@ -51,12 +61,8 @@
           </td>
           <td>
             <p>
-              Duis ut urna diam, ac sagittis neque. Nunc vitae ipsum elit, non lacinia dui. Curabitur porttitor fermentum dapibus. Vivamus feugiat faucibus enim. Quisque vehicula rutrum justo, sed aliquam sem fringilla nec. Lorem ipsum dolor
-              sit amet, consectetur adipiscing elit.
+              @Html.Raw(item.Descricao)
             </p>
-            <div class="text-right">
-              <em>I am me</em>
-            </div>
           </td>
         </tr>
       }
@@ -67,22 +73,33 @@
   <button class="btn btn-primary" data-toggle="collapse" data-target="#topic-reply">Responder este tópico</button>
 </div>
 <div class="collapse" id="topic-reply">
-  <div class="text-center">
-    <div class="text-sm">
-      Make sure you have read the
-      <a href="">forum rules</a>before posting
-    </div>
-  </div>
   <div class="d-flex justify-content-center">
     <div class="col-xl-6">
       <form class="form-horizontal" action="/" method="post">
         <div class="form-group">
-          <textarea class="form-control" id="reply-message" name="reply-message" rows="5" placeholder="Type your answer..."></textarea>
+          <input type="text" id="Nome" class="form-control" placeholder="Seu nome..." maxlength="100" />
+        </div>
+        <div class="form-group">
+          <textarea class="form-control" id="reply-message" name="reply-message" rows="5" placeholder="Sua resposta..."></textarea>
         </div>
         <div class="form-group text-center">
-          <button class="btn btn-sm btn-primary" type="button">Post Answer</button>
+          <button class="btn btn-sm btn-primary" type="button">Enviar Resposta</button>
         </div>
       </form>
     </div>
   </div>
 </div>
+
+@section Scripts{
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('#topic-reply').on('show.bs.collapse',
+        function() {
+          $(this).addClass("show");
+        }).on('hide.bs.collapse',
+        function() {
+          $(this).removeClass("show");
+        });
+    });
+  </script>
+}

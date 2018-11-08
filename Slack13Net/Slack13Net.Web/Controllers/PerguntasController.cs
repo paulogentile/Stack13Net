@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Slack13Net.Core.Contexts;
+using Slack13Net.Web.ViewModels;
 
 namespace Slack13Net.Web.Controllers
 {
@@ -19,10 +20,16 @@ namespace Slack13Net.Web.Controllers
 
         public IActionResult Index(int id)
         {
-            return View(_context.Perguntas
-                .Where(p => p.CategoriaId == id)
-                .Include("Respostas")
-                .OrderBy(p => p.Descricao));
+            var model = new PerguntasViewModel()
+            {
+                Categoria = _context.Categorias.Find(id),
+                Perguntas = _context.Perguntas
+                    .Where(p => p.CategoriaId == id)
+                    .Include("Respostas")
+                    .OrderBy(p => p.Descricao).ToList()
+            };
+
+            return View(model);
         }
     }
 }
