@@ -52,18 +52,39 @@
           </td>
         </tr>
         <tr>
-          <td class="text-center" style="width: 15%;">
-            <div class="mt-2">
-              <a href="">
-                <img class="rounded-circle thumb64" src="https://api.adorable.io/avatars/64/@(item.Autor).png" alt="avatar">
-              </a>
-            </div>
-          </td>
-          <td>
-            <p>
-              @Html.Raw(item.Descricao)
-            </p>
-          </td>
+            <td class="text-center" style="width: 15%;">
+                <div class="mt-2">
+                    <a href="">
+                        <img class="rounded-circle thumb64" src="https://api.adorable.io/avatars/64/@(item.Autor).png" alt="avatar">
+                    </a>
+                </div>
+            </td>
+            <td>
+                <p>
+                    @Html.Raw(item.Descricao)
+                </p>
+            </td>
+
+            <td class="text-right d-none d-lg-table-cell">
+                <form id="selectLanguage" asp-controller="Respostas" asp-action="EditarResposta" asp-route-id="@item.RespostaId" method="get" role="form">
+                    <div>
+                        <div class="text-center mb-3">
+                            <button type="submit" class="btn btn-primary">Editar Resposta</button>
+                        </div>
+                    </div>
+                </form>
+            </td>
+            <td class="text-right d-none d-lg-table-cell">
+                <form id="selectLanguage" asp-controller="Respostas" asp-action="DeletarResposta" asp-route-id="@item.RespostaId" role="form">
+                    <div>
+                        <div class="text-center mb-3">
+                            <button type="submit" class="btn btn-primary">Deletar Resposta</button>
+                        </div>
+                    </div>
+                </form>
+            </td>
+
+
         </tr>
       }
     </tbody>
@@ -75,17 +96,19 @@
 <div class="collapse" id="topic-reply">
   <div class="d-flex justify-content-center">
     <div class="col-xl-6">
-      <form class="form-horizontal" action="/" method="post">
-        <div class="form-group">
-          <input type="text" id="Nome" class="form-control" placeholder="Seu nome..." maxlength="100" />
-        </div>
-        <div class="form-group">
-          <textarea class="form-control" id="reply-message" name="reply-message" rows="5" placeholder="Sua resposta..."></textarea>
-        </div>
-        <div class="form-group text-center">
-          <button class="btn btn-sm btn-primary" type="button">Enviar Resposta</button>
-        </div>
-      </form>
+        <form class="form-horizontal" action="/Respostas/CadastrarResposta" method="post">
+            <input type="hidden" id="PerguntaId" name="PerguntaId" value="@Model.Pergunta.PerguntaId" />
+            <input type="hidden" id="DataCadastro" name="DataCadastro" value="@DateTime.Now" />
+            <div class="form-group">
+                <input type="text" id="Autor" name="Autor" class="form-control" placeholder="Seu nome..." maxlength="100" />
+            </div>
+            <div class="form-group">
+                <textarea class="form-control" id="Descricao" name="Descricao" rows="5" placeholder="Sua resposta..."></textarea>
+            </div>
+            <div class="form-group text-center">
+                <button class="btn btn-sm btn-primary" type="submit">Enviar Resposta</button>
+            </div>
+        </form>
     </div>
   </div>
 </div>

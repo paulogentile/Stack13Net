@@ -1,0 +1,32 @@
+﻿@model Slack13Net.Core.Models.Resposta
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="content-heading">
+    <div>
+        Fórum Stack13Net - Editar Resposta
+    </div>
+    <div class="ml-auto">
+        <a class="btn btn-sm btn-secondary text-sm" asp-controller="Perguntas" asp-action="Index" asp-route-id="@Model.PerguntaId">&lt; voltar</a>
+    </div>
+</div>
+<div class="d-flex justify-content-center">
+    <div class="col-xl-6">
+        <form class="form-horizontal" action="/Respostas/SalvarEditarResposta" method="post">
+            <input type="hidden" id="PerguntaId" name="PerguntaId" value="@Model.PerguntaId" />
+            <input type="hidden" id="DataCadastro" name="DataCadastro" value="@Model.DataCadastro" />
+            <input type="hidden" id="RespostaId" name="RespostaId" value="@Model.RespostaId" />
+            <div class="form-group">
+                <input type="text" id="Autor" name="Autor" class="form-control" placeholder="Seu nome..." maxlength="100" value="@Model.Autor" />
+            </div>
+            <div class="form-group">
+                <textarea class="form-control" id="Descricao" name="Descricao" rows="5" placeholder="Sua resposta...">@Model.Descricao</textarea>
+            </div>
+            <div class="form-group text-center">
+                <button class="btn btn-sm btn-primary" type="submit">Editar Resposta</button>
+            </div>
+        </form>
+    </div>
+</div>
+

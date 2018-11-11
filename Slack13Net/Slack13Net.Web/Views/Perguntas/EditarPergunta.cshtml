@@ -1,0 +1,39 @@
+﻿@model Slack13Net.Core.Models.Pergunta;
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="content-heading">
+    <div>
+        Fórum Stack13Net - Editar Tópico:  @Model.Descricao
+    </div>
+    <div class="ml-auto">
+        <a class="btn btn-sm btn-secondary text-sm" asp-controller="Home" asp-action="Index">&lt; voltar</a>
+    </div>
+</div>
+
+<div class="d-flex justify-content-center">
+    <div class="col-xl-6">
+        <form class="form-horizontal" action="/Perguntas/SalvarEditarPergunta" method="post">
+            <input type="hidden" id="CategoriaId" name="CategoriaId" value="@Model.CategoriaId" />
+            <input type="hidden" id="PerguntaId" name="PerguntaId" value="@Model.PerguntaId" />
+            <input type="hidden" id="DataCadastro" name="DataCadastro" value="@Model.DataCadastro" />
+            <div class="form-group">
+                <input type="text" id="Autor" name="Autor" class="form-control" placeholder="Seu nome..." maxlength="100" value="@Model.Autor" />
+            </div>
+            <div class="form-group">
+                <input type="text" id="Titulo" name="Titulo" class="form-control" placeholder="Título do tópico..." maxlength="100" value="@Model.Titulo" />
+            </div>
+            <div class="form-group">
+                <textarea class="form-control" id="Descricao" name="Descricao" rows="5" placeholder="Sua pergunta..." >@Model.Descricao</textarea>
+            </div>
+            <div class="form-group">
+                <input type="text" id="Tags" name="Tags" class="form-control" placeholder="Tags relacionadas..." value="@Model.Tags" />
+            </div>
+            <div class="form-group text-center">
+               <button class="btn btn-sm btn-primary" type="submit">Editar Tópico</button>
+            </div>
+        </form>
+    </div>
+</div>
+

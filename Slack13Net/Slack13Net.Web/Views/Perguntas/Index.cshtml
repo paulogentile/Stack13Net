@@ -1,102 +1,128 @@
 ﻿@model Slack13Net.Web.ViewModels.PerguntasViewModel
 @{
-  ViewData["Title"] = "Index";
+    ViewData["Title"] = "Index";
 }
 
 <div class="content-heading">
-  <div>
-    Fórum Stack13Net - Tópicos Sobre @Model.Categoria.Titulo
-  </div>
-  <div class="ml-auto">
-    <a class="btn btn-sm btn-secondary text-sm" asp-controller="Home" asp-action="Index">&lt; voltar</a>
-  </div>
+    <div>
+        Fórum Stack13Net - Tópicos Sobre @Model.Categoria.Titulo
+    </div>
+    <div class="ml-auto">
+        <a class="btn btn-sm btn-secondary text-sm" asp-controller="Home" asp-action="Index">&lt; voltar</a>
+    </div>
 </div>
 <div class="card card-default">
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th class="h4" style="width: 70%">Tópicos</th>
-        <th></th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-    @foreach (var item in Model.Perguntas)
-    {
-      <tr>
-        <td>
-          <h4>
-            <a asp-controller="Respostas" asp-action="Index" asp-route-id="@item.PerguntaId">
-              <strong>@item.Titulo</strong>
-            </a>
-          </h4>
-          <div class="text-muted text-sm">
-            <span class="mx-1"></span>
-            <span>
-              <strong class="mr-1">@item.Respostas.Count</strong>respostas
-            </span>
-          </div>
-        </td>
-        <td class="text-right d-none d-lg-table-cell">
-          <div class="text-muted">
-            @item.Tags
-          </div>
-        </td>
-        <td class="text-right d-none d-lg-table-cell">
-          <div class="text-muted">
-            <small>@item.DataCadastro.ToString("dd \\de MMMM \\de yyyy")</small>
-          </div>
-        </td>
-      </tr>
-    }
-    
-    @if (!Model.Perguntas.Any())
-    {
-      <tr>
-        <td>Nenhum tópico encontrado.</td>
-      </tr>
-    }
-    </tbody>
-  </table>
-</div>
-  
-<div class="text-center mb-3">
-  <button class="btn btn-primary" data-toggle="collapse" data-target="#topic-reply">Novo Tópico</button>
-</div>
-<div class="collapse" id="topic-reply">
-  <div class="d-flex justify-content-center">
-    <div class="col-xl-6">
-      <form class="form-horizontal" action="/" method="post">
-        <div class="form-group">
-          <input type="text" id="Nome" class="form-control" placeholder="Seu nome..." maxlength="100" />
-        </div>
-        <div class="form-group">
-          <input type="text" id="Titulo" class="form-control" placeholder="Título do tópico..." maxlength="100" />
-        </div>
-        <div class="form-group">
-          <textarea class="form-control" id="reply-message" name="reply-message" rows="5" placeholder="Sua pergunta..."></textarea>
-        </div>
-        <div class="form-group">
-          <input type="text" id="Tags" class="form-control" placeholder="Tags relacionadas..." />
-        </div>
-        <div class="form-group text-center">
-          <button class="btn btn-sm btn-primary" type="button">Criar Tópico</button>
-        </div>
-      </form>
-    </div>
-  </div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th class="h4" style="width: 70%">Tópicos</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Perguntas)
+            {
+            <tr>
+                <td>
+                    <h4>
+                        <a asp-controller="Respostas" asp-action="Index" asp-route-id="@item.PerguntaId">
+                            <strong>@item.Titulo</strong>
+                        </a>
+                    </h4>
+                    <div class="text-muted text-sm">
+                        <span class="mx-1"></span>
+                        <span>
+                            <strong class="mr-1">@item.Respostas.Count</strong>respostas
+                        </span>
+                    </div>
+                </td>
+                <td class="text-right d-none d-lg-table-cell">
+                    <div class="text-muted">
+                        @item.Tags
+                    </div>
+                </td>
+                <td class="text-right d-none d-lg-table-cell">
+                    <div class="text-muted">
+                        <small>@item.DataCadastro.ToString("dd \\de MMMM \\de yyyy")</small>
+                    </div>
+                </td>
+                <td class="text-right d-none d-lg-table-cell">
+                    <form id="selectLanguage" asp-controller="Perguntas" asp-action="EditarPergunta" asp-route-id="@item.PerguntaId" method="get" role="form">
+                        <div>
+                            <div class="text-center mb-3">
+                                <button type="submit" class="btn btn-primary">Editar Tópico</button>
+                            </div>
+                        </div>
+                    </form>
+                </td>
+                <td class="text-right d-none d-lg-table-cell">
+                    <form id="selectLanguage" asp-controller="Perguntas" asp-action="DeletarPergunta" asp-route-id="@item.PerguntaId" role="form">
+                        <div>
+                            <div class="text-center mb-3">
+                                <button type="submit" class="btn btn-primary">Deletar Tópico</button>
+                            </div>
+                        </div>
+                    </form>
+                </td>
+
+
+            </tr>
+            }
+
+            @if (!Model.Perguntas.Any())
+            {
+                <tr>
+                    <td>Nenhum tópico encontrado.</td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>
 
+<div class="text-center mb-3">
+    <button class="btn btn-primary" data-toggle="collapse" data-target="#topic-reply">Novo Tópico</button>
+</div>
+<div class="collapse" id="topic-reply">
+    <div class="d-flex justify-content-center">
+        <div class="col-xl-6">
+            <form class="form-horizontal" action="/Perguntas/CadastrarPergunta" method="post">
+                <input type="hidden" id="CategoriaId" name="CategoriaId" value="@Model.Categoria.CategoriaId" />
+                <input type="hidden" id="DataCadastro" name="DataCadastro" value="@DateTime.Now" />
+                <div class="form-group">
+                    <input type="text" id="Autor" name="Autor" class="form-control" placeholder="Seu nome..." maxlength="100" />
+                </div>
+                <div class="form-group">
+                    <input type="text" id="Titulo" name="Titulo" class="form-control" placeholder="Título do tópico..." maxlength="100" />
+                </div>
+                <div class="form-group">
+                    <textarea class="form-control" id="Descricao" name="Descricao" rows="5" placeholder="Sua pergunta..."></textarea>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="Tags" name="Tags" class="form-control" placeholder="Tags relacionadas..." />
+                </div>
+                <div class="form-group text-center">
+                    <button class="btn btn-sm btn-primary" type="submit">Criar Tópico</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+
 @section Scripts{
-  <script type="text/javascript">
-    $(document).ready(function() {
-      $('#topic-reply').on('show.bs.collapse',
-        function() {
-          $(this).addClass("show");
-        }).on('hide.bs.collapse',
-        function() {
-          $(this).removeClass("show");
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#topic-reply').on('show.bs.collapse',
+                function () {
+                    $(this).addClass("show");
+                }).on('hide.bs.collapse',
+                    function () {
+                        $(this).removeClass("show");
+                    });
         });
-    });
-  </script>
+    </script>
 }
